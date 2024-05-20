@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datepicker Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 th:text="'Ajouter Conge'"></h1>
+    <form th:action="@{/addConge}" th:object="${conge}" method="post">
+      <div class="mb-3">
+        <label for="datepicker-start" class="form-label">Date de début</label>
+        <input type="date" id="datepicker-start" th:field="*{dateDebut}" class="form-control mb-2">
+      </div>
+      <div class="mb-3">
+        <label for="datepicker-end" class="form-label">Date de fin</label>
+        <input type="date" id="datepicker-end" th:field="*{dateFin}" class="form-control mb-2">
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const startDateInput = document.getElementById("datepicker-start");
+      const endDateInput = document.getElementById("datepicker-end");
+
+      startDateInput.addEventListener("change", function () {
+        const currentDate = new Date();
+        const startDate = new Date(startDateInput.value);
+
+        // Remove time part from current date
+        currentDate.setHours(0, 0, 0, 0);
+
+        if (startDate >= currentDate) {
+          startDateInput.classList.add("is-valid");
+          startDateInput.classList.remove("is-invalid");
+        } else {
+          startDateInput.classList.remove("is-valid");
+          startDateInput.classList.add("is-invalid");
+        }
+
+        validateEndDate();
+      });
+
+      endDateInput.addEventListener("change", validateEndDate);
+
+      function validateEndDate() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+
+        if (endDateInput.value === "") {
+          endDateInput.classList.remove("is-valid", "is-invalid");
+        } else if (startDateInput.classList.contains("is-invalid")) {
+          endDateInput.classList.remove("is-valid");
+          endDateInput.classList.add("is-invalid");
+        } else if (endDate >= startDate) {
+          endDateInput.classList.remove("is-invalid");
+          endDateInput.classList.add("is-valid");
+        } else {
+          endDateInput.classList.remove("is-valid");
+          endDateInput.classList.add("is-invalid");
+        }
+      }
+    });
+  </script>
+</body>
+</html>

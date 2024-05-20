@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     <style>
+        .error-text {
+            color: red;
+        }
+        body {
+            padding: 80px;
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+        
+    </style>
+</head>
+<body>
+<form method="post" th:action="@{/ajouterEmploye}" th:object="${employe}">
+    <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="nom" aria-describedby="emailHelp" th:field="*{Nom}">
+        <div id="emailHelp" th:errors="*{Nom}" class="form-text error-text"></div>
+    </div>
+    <div class="mb-3">
+        <label for="Prenom" class="form-label">Prenom</label>
+        <input type="text" class="form-control" id="Prenom" name="Prenom" th:field="*{Prenom}" >
+        <div id="Prenom" th:errors="*{Prenom}" class="form-text error-text"></div>
+    </div>
+    <div class="mb-3">
+        <label for="Adresse" class="form-label">Email</label>
+        <input type="text" class="form-control" id="Adresse" name="Email">
+        <div id="Adresse" th:errors="*{Email}" class="form-text error-text"></div>
+    </div>
+    <div class="mb-3">
+        <label for="Poste" class="form-label">Poste</label>
+        <input type="text" class="form-control" id="Poste" name="Poste">
+        <div id="Poste" th:errors="*{Poste}" class="form-text error-text"></div>
+    </div>
+    <div class="mb-3">
+        <label for="Adresse" class="form-label">telephone</label>
+        <input type="text" class="form-control" id="telephone" name="telephone">
+        <div id="telephone" th:errors="*{telephone}" class="form-text error-text"></div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>
