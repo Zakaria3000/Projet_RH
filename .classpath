@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="springmvc/presentation/" kind="src" path="Projet_RH/src/main/java"/>
+	<classpathentry kind="src" path="Projet_RH/src/main/java/springmvc/presentation"/>
+	<classpathentry kind="src" path="Projet_RH/src/test/java"/>
+	<classpathentry kind="lib" path="Projet_RH/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="output" path="Projet_RH/target/classes"/>
+</classpath>
